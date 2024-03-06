@@ -1,0 +1,26 @@
+{
+  "name": "cdqc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "client": "cd frontend && npm start",
+    "server": "cd backend && npm run dev",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "yarn server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neeravgg/CDQC.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/neeravgg/CDQC/issues"
+  },
+  "homepage": "https://github.com/neeravgg/CDQC#readme",
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.2.1",
+    "concurrently": "^8.2.2"
+  }
+}
