@@ -19,6 +19,7 @@ import Spinner from './components/loaders/Spinner';
 import Navbar from './components/Navbar';
 import ServerLoader from './components/loaders/ServerLoader';
 import { checkServer } from './redux/auth/authSlice';
+import Nav from './components/Nav';
 let token = getCookie('token');
 
 function App() {
@@ -72,7 +73,7 @@ function App() {
         <Spinner />
         <Router>
           <div className="App">
-            {token ? <Navbar /> : null}
+            {token ? <Navbar /> : <Nav />}
             <Routes>
               {/* <Route path="*" element={<Navigate to={"/login"} replace />} /> */}
               <Route

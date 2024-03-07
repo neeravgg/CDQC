@@ -46,7 +46,7 @@ const Login: controller_interface['basicController'] = async (req, res) => {
         // await prisma.Token.create(userToken);
 
         // res.cookie("token", token).status(200).json({ message: "Successfully logged!" });
-        sendResponse(res, StatusCodes.CREATED, 'successfully logged!', true, { token });
+        sendResponse(res, StatusCodes.OK, 'successfully logged!', true, { email: user.email, name: user.email, token });
 
     } catch (error: any) {
         sendError(res, StatusCodes.INTERNAL_SERVER_ERROR, error.message, false, error);
@@ -77,7 +77,7 @@ const Register: controller_interface['basicController'] = async (req, res) => {
         const results = await pool.execute('INSERT INTO users (name,email, password) VALUES (?, ?,?)', [name, email, hashedPassword]);
 
 
-        sendResponse(res, StatusCodes.CREATED, 'successfully! registered', true, results);
+        sendResponse(res, StatusCodes.CREATED, 'successfully! registered', true, { name, email });
     } catch (error: any) {
         sendError(res, StatusCodes.INTERNAL_SERVER_ERROR, error.message, false, error);
 
@@ -96,4 +96,5 @@ const Logout: controller_interface['basicController'] = async (req, res) => {
 
     }
 };
+
 export { Login, Register, Logout };

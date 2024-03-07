@@ -1,17 +1,17 @@
-import { SyntheticEvent } from "react";
-import { useState, useEffect } from "react";
-import { login, reset } from "../redux/auth/authSlice";
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import { RootState } from "../app/store";
-import { StyledLogin } from "../styles/Login.styled";
-import Nav from "../components/Nav";
+import { SyntheticEvent } from 'react';
+import { useState, useEffect } from 'react';
+import { login, reset } from '../redux/auth/authSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { RootState } from '../app/store';
+import { StyledLogin } from '../styles/Login.styled';
+import Nav from '../components/Nav';
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
   const { email, password } = formData;
 
@@ -20,9 +20,7 @@ const Login = () => {
   // Initialise redux hook to dispatch a function
   const dispatch = useDispatch();
 
-  const { user, isError, isSuccess, message } = useSelector(
-    (state: RootState) => state.auth
-  );
+  const { user, isError, isSuccess, message } = useSelector((state: RootState) => state.auth);
 
   // UseEffect hook detects whenever root state changes are updated
   useEffect(() => {
@@ -52,6 +50,7 @@ const Login = () => {
     const userData = {
       email,
       password,
+      cb: () => navigate('/'),
     };
     dispatch(login(userData));
   };

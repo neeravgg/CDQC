@@ -30,8 +30,7 @@ const retrieveObjectFromCookie = (name: string): Record<string, any> | null => {
 
 const deleteAllCookies = (): void => {
   const cookies = new Cookies();
-  cookies.remove("token", { path: "/" });
-  sessionStorage.clear();
+  cookies.remove("token");
 };
 
 export {

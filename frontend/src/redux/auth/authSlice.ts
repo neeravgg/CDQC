@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "./authService";
 import { PayloadAction } from "@reduxjs/toolkit";
+import { getSessionStorage } from "../../utils/StorageHelper";
 
 // Get user from local storage (stringify converts null -> "null" if localStorage.getItem returns null, as JSON.parse can only take strings)
-const user = JSON.parse(localStorage.getItem("user") as string);
+const user = getSessionStorage("user") as Record<string, any>;
 
 export interface State {
   user: any;
@@ -42,14 +43,24 @@ export const register = createAsyncThunk(
 );
 
 // Logout user
-export const logout = createAsyncThunk("auth/logout", async () => {
-  await authService.logout();
-});
+export const logout = createAsyncThunk("auth/logout",
+  async (payload: object, thunkAPI) => {
+    try {
+      return await authService.logout(payload);
+    } catch (err: any) {
+      const message =
+        (err.response && err.response.data && err.response.data.message) ||
+        err.message ||
+        err.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
 
 // Login user
 export const login = createAsyncThunk(
   "auth/login",
-  async (user: object, thunkAPI) => {
+  async (user: Record<string, any>, thunkAPI) => {
     try {
       let res = await authService.login(user);
       return res;
@@ -118,7 +129,6 @@ export const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        // payload is returned from register service
         state.user = action.payload;
         window.location.href = `/`
 
@@ -131,6 +141,8 @@ export const authSlice = createSlice({
       })
       .addCase(logout.fulfilled, (state) => {
         state.user = null;
+        window.location.href = `/`
+
       })
       .addCase(checkServer.fulfilled, (state) => {
         state.checkServerLoading = false;
