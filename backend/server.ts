@@ -1,7 +1,7 @@
 import * as dotenv from "dotenv"
+dotenv.config()
 import app from './src/app'
 
-dotenv.config()
 
 const startApp = async () => {
   app.listen(process.env.PORT, () => {
