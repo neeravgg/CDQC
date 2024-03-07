@@ -64,7 +64,7 @@ const getReportList: controller_interface['basicController'] = async (req, res) 
         const user = await res.locals.user;
 
         // Assuming searchPage starts from 0
-        const page = parseInt(searchPage as string) + 1 || 1;
+        const page = parseInt(searchPage as string);
         const pageSize = 5;
         const offset = page * pageSize;
 

@@ -9,7 +9,6 @@ const ReportDetails = () => {
   const dispatch = useDispatch();
   const { reportData } = useSelector((state: RootState) => state.report);
   const { id } = useParams();
-  console.log(reportData);
 
   useEffect(() => {
     if (id) dispatch(getReportById(id));

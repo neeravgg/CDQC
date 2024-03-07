@@ -13,8 +13,8 @@ const ReportPdf = ({ name, imageUrl }) => {
   return (
     <StyledDashboard>
       <div className="flex items-center gap-1 m-8 justify-between px-10">
-        <div className="flex items-center gap-2">
-          <div role="presentation" className="text-xl cursor-pointer" onClick={() => navigate('/')}>
+        <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
+          <div role="presentation" className="text-xl">
             <IoIosArrowBack />
           </div>
           <h1 className="font-semibold text-xl">Report</h1>

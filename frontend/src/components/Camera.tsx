@@ -54,7 +54,6 @@ const CameraComponent = ({ setIsWebcamOpen, setImageFile, setIsEditor }) => {
     if (screenshot) {
       // You can set the selected file in state or perform further actions here
       const file = await convertDataUrlToFile(screenshot, `${new Date().getTime().toString()}.png`);
-      console.log('file success', file);
       setImageFile(file);
       closeWebcam();
       setIsEditor(true);
