@@ -10,6 +10,8 @@ NOTICE : Since the project is not yet in production and PDF only supports HTTPS 
 
 ## How to start
 
+### `npm install`
+
 ### `cd backend && npm install`
 
 ### `cd ..`
