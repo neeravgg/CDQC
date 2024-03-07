@@ -3,7 +3,7 @@ import { getCookie } from "../../utils/cookieHelper";
 
 const token = getCookie("token");
 
-const API_URL = `${process.env.REACT_APP_SERVER_URL}api/report/`;
+const API_URL = `${process.env.REACT_APP_SERVER_URL}/api/report/`;
 
 const getReports = async (payload) => {
   const config = {

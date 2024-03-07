@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { PropagateLoader } from 'react-spinners';
-import { RootState } from '../app/store';
+import { RootState } from '../../app/store';
 
 const loadingContainerStyle: React.CSSProperties = {
   display: 'flex',
