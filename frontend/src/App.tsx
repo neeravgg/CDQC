@@ -14,11 +14,9 @@ import { ReactNode, useEffect } from 'react';
 import CreateReport from './pages/report/create';
 import ReportDetails from './pages/report/details';
 import { getCookie } from './utils/cookieHelper';
-import ReportLoader from './components/loaders/ReportLoader';
-import Spinner from './components/loaders/Spinner';
+import ReportLoader from './components/ReportLoader';
+import Spinner from './components/Spinner';
 import Navbar from './components/Navbar';
-import ServerLoader from './components/loaders/ServerLoader';
-import { checkServer } from './redux/auth/authSlice';
 let token = getCookie('token');
 
 function App() {
@@ -44,25 +42,31 @@ function App() {
     children,
     isCommon = true,
   }: ProtectRouteProps) => {
-    const dispatch = useDispatch();
-    const { checkServerLoading } = useSelector((state: RootState) => state.auth);
+    const isAuthTokenValid = isAllowed ? true : isCommon ? token : !token;
 
-    useEffect(() => {
-      dispatch(checkServer());
-    }, [dispatch]);
-
-    if (checkServerLoading) {
-      return <ServerLoader />;
-    } else {
-      const isAuthTokenValid = isAllowed ? true : isCommon ? token : !token;
-
-      return isAuthTokenValid ? (
-        <>{children ? children : <Outlet />}</>
-      ) : (
-        <Navigate to={redirectPath} replace />
-      );
-    }
+    return isAuthTokenValid ? (
+      <>{children ? children : <Outlet />}</>
+    ) : (
+      <Navigate to={redirectPath} replace />
+    );
   };
+
+  // const ProtectedRoute = ({
+  //   isAllowed,
+  //   redirectPath,
+  //   children,
+  // }: ProtectRouteProps) => {
+  //   const { user } = useSelector((state: RootState) => state.auth);
+  //   // const backTrackRoute = getLocalStorage("backTrackRoute");
+  //   let token = user?.token;
+  //   const isAuthTokenValid = isAllowed || token ? true : false;
+  //   const routePath = redirectPath;
+  //   return isAuthTokenValid ? (
+  //     <>{children ? children : <Outlet />}</>
+  //   ) : (
+  //     <Navigate to={routePath} replace />
+  //   );
+  // };
 
   return (
     <>

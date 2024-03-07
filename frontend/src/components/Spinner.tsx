@@ -1,7 +1,7 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import styled from 'styled-components';
-import { RootState } from '../../app/store';
+import React from "react";
+import { useSelector } from "react-redux";
+import styled from "styled-components";
+import { RootState } from "../app/store";
 
 const StyledSpinner = styled.div`
   width: 50px;

@@ -3,10 +3,10 @@
 import mysql from 'mysql2/promise';
 
 const pool = mysql.createPool({
-    host: process.env.DB_HOSTNAME,
+    host: 'mysql-348cb790-cdqc-test.a.aivencloud.com',
     port: 24475,
-    user: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
+    user: 'avnadmin',
+    password: 'AVNS_PFbQwWHlK6VBl-hMWyf',
     database: 'defaultdb',
 
 });

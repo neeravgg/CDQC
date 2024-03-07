@@ -64,24 +64,24 @@ export const login = createAsyncThunk(
   }
 );
 // check server
-export const checkServer = createAsyncThunk(
-  "server/check",
-  async (_, thunkAPI) => {
-    try {
-      let res = await authService.checkServer();
-      console.log({ res });
+// export const checkServer = createAsyncThunk(
+//   "server/check",
+//   async (_, thunkAPI) => {
+//     try {
+//       let res = await authService.checkServer();
+//       console.log({ res });
 
-      return res;
-    } catch (err: any) {
-      // If any error exists put into message
-      const message =
-        (err.response && err.response.data && err.response.data.message) ||
-        err.message ||
-        err.toString();
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
+//       return res;
+//     } catch (err: any) {
+//       // If any error exists put into message
+//       const message =
+//         (err.response && err.response.data && err.response.data.message) ||
+//         err.message ||
+//         err.toString();
+//       return thunkAPI.rejectWithValue(message);
+//     }
+//   }
+// );
 
 // Define logic for reducer logic for handling state
 export const authSlice = createSlice({
@@ -132,13 +132,13 @@ export const authSlice = createSlice({
       })
       .addCase(logout.fulfilled, (state) => {
         state.user = null;
-      })
-      .addCase(checkServer.fulfilled, (state) => {
-        state.checkServerLoading = false;
-      })
-      .addCase(checkServer.pending, (state) => {
-        if (!state.checkServerLoading) state.checkServerLoading = true;
-      })
+      });
+    // .addCase(checkServer.fulfilled, (state) => {
+    //   state.checkServerLoading = false;
+    // })
+    // .addCase(checkServer.pending, (state) => {
+    //   if (!state.checkServerLoading) state.checkServerLoading = true;
+    // })
     // .addCase(checkServer.rejected, (state) => {
     //   state.checkServerLoading = false;
     // });

@@ -23,13 +23,13 @@ NOTICE : Since the project is not yet in production and PDF only supports HTTPS 
 **Frontend:**
 
 - TypeScript
-- Reactjs
+- React.js
 - Redux Toolkit
 - Styled Components (CSS-in-JS)
 
 **Backend:**
 
 - TypeScript
-- Nodejs
-- Expressjs
+- Node.js
+- Express.js
 - Mysql

@@ -2,8 +2,7 @@ import axios from "axios";
 import { deleteAllCookies, setCookie } from "../../utils/cookieHelper";
 // This file is responsible for sending/receiving http requests
 
-const AUTH_URL = `${process.env.REACT_APP_SERVER_URL}/auth/`;
-const SERVER_URL = `${process.env.REACT_APP_SERVER_URL}/server/`;
+const AUTH_URL = `${process.env.REACT_APP_SERVER_URL}auth/`;
 
 // Register User Service
 const register = async (userData: object) => {
@@ -33,16 +32,17 @@ const login = async (userData: object) => {
 };
 
 // Server availability check
-const checkServer = async () => {
-  const response = await axios.get(SERVER_URL + "check");
-  return response.data;
-};
+// const checkServer = async () => {
+//   const response = await axios.get(API_URL + "check");
+
+//   return response.data;
+// };
 
 const authService = {
   register,
   logout,
   login,
-  checkServer,
+  // checkServer,
 };
 
 export default authService;
