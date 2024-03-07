@@ -84,6 +84,8 @@ const Register: controller_interface['basicController'] = async (req, res) => {
     }
 };
 const Logout: controller_interface['basicController'] = async (req, res) => {
+    const user = await res.locals.user
+
     try {
         res
             .clearCookie("token", { sameSite: "none", secure: true })

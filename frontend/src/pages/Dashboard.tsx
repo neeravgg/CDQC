@@ -51,12 +51,13 @@ const Dashboard = () => {
     );
   };
 
-  const onItemDownload = (event, id) => {
+  const viewReport = (event, id) => {
     event.stopPropagation();
     navigate(`/report/details/${id}`);
     // TODO get report and download
   };
   const deleteItem = async (e: SyntheticEvent, item: Record<string, any>) => {
+    e.stopPropagation();
     const confirm = await ConfirmMessage('you want to delete?');
     if (confirm.isConfirmed) {
       onItemDelete(e, item?.id);
@@ -82,13 +83,17 @@ const Dashboard = () => {
         ) : null}
         {reportList.length > 0 &&
           reportList?.map((item) => (
-            <div key={item?.id} className="item cursor-none">
+            <div
+              key={item?.id}
+              className="item cursor-none"
+              onClick={(e) => viewReport(e, item?.id)}
+            >
               <div> {item?.report_name} </div>
-              <div className=" item-actions">
+              <div className="item-actions">
                 <button
-                  onClick={(e) => onItemDownload(e, item?.id)}
+                  onClick={(e) => viewReport(e, item?.id)}
                   className="action-icon"
-                  title="Download Report"
+                  title="View Report"
                 >
                   <FaEye />
                 </button>

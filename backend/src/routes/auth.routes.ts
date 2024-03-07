@@ -1,9 +1,10 @@
 import express from "express";
 const router = express.Router();
+import { authenticateUser } from '../middlewares/authentication.middleware'
 
 // controllers
 import {
-	Register, Login
+	Register, Login, Logout
 } from '../controllers/auth.controller';
 
 router.post('/register',
@@ -12,6 +13,11 @@ router.post('/register',
 router.post(
 	'/login',
 	Login
+);
+router.post(
+	'/logout',
+	authenticateUser,
+	Logout
 );
 
 

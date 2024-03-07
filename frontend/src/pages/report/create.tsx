@@ -23,7 +23,7 @@ const CreateReport = () => {
     const cb = () => {
       navigate(`/report/details/${newReport.insertId}`);
     };
-    payload.append('image', file, file.name);
+    payload.append('image', file, imageFile.name);
     dispatch(
       createReport({
         payload,

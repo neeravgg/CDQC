@@ -9,7 +9,7 @@ interface PaginationProps {
 
 const Pagination: React.FC<PaginationProps> = ({ pageCount, handlePageClick }) => {
   return (
-    <>
+    <div className="paginate">
       <ReactPaginate
         previousLabel={'← Previous'}
         nextLabel={'Next →'}
@@ -21,7 +21,7 @@ const Pagination: React.FC<PaginationProps> = ({ pageCount, handlePageClick }) =
         disabledClassName={'pagination__link--disabled'}
         activeClassName={'pagination__link--active'}
       />
-    </>
+    </div>
   );
 };
 
