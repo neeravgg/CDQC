@@ -14,7 +14,7 @@ router.post(
 	'/login',
 	Login
 );
-router.post(
+router.get(
 	'/logout',
 	authenticateUser,
 	Logout
