@@ -58,77 +58,75 @@ const getReportById: controller_interface['basicController'] = async (req, res) 
 };
 
 
-const getReportList: controller_interface['basicController'] = async (req, res) => {
-    try {
-        const { searchPage } = req.body;
-        const user = await res.locals.user;
-
-        // Assuming searchPage starts from 0
-        const page = parseInt(searchPage as string);
-        const pageSize = 5;
-        const offset = page * pageSize;
-
-        // Execute the query to get the total count based on user_id
-        const totalCountRows: any = await pool.query('SELECT COUNT(*) as total_count FROM reports WHERE user_id = ?', [user.userId]);
-
-        // Get the total count value from the result
-        const totalCount = totalCountRows[0][0].total_count;
-
-        const rows = await pool.query('SELECT * FROM reports WHERE user_id = ? ORDER BY created_at DESC LIMIT ? OFFSET ?', [user.userId, pageSize, offset]);
-
-        const totalPages: number = Math.ceil(totalCount / pageSize);
-
-        const paginationData = { page_size: pageSize, page, total_pages: totalPages };
-        sendResponse(res, StatusCodes.OK, 'Success!', true, rows[0], paginationData);
-    } catch (error: any) {
-        sendError(res, StatusCodes.INTERNAL_SERVER_ERROR, error.message, false, error);
-    }
-};
-
-
-
 // const getReportList: controller_interface['basicController'] = async (req, res) => {
 //     try {
-//         const { searchPage, searchQuery } = req.body;
+//         const { searchPage } = req.body;
 //         const user = await res.locals.user;
 
-//         const page = parseInt(searchPage as string) || 1;
+//         const page = parseInt(searchPage as string);
 //         const pageSize = 5;
-//         const offset = (page - 1) * pageSize;
+//         const offset = page * pageSize;
 
-//         // Execute the query to get the total count
-//         const totalCountRows: any = await pool.query('SELECT COUNT(*) as total_count FROM reports WHERE id = ?', [user.userId]);
+//         const totalCountRows: any = await pool.query('SELECT COUNT(*) as total_count FROM reports WHERE user_id = ?', [user.userId]);
 
-//         let query = 'SELECT * FROM reports WHERE user_id = ?';
+//         // Get the total count value from the result
+//         const totalCount = totalCountRows[0][0].total_count;
 
+//         const rows = await pool.query('SELECT * FROM reports WHERE user_id = ? ORDER BY created_at DESC LIMIT ? OFFSET ?', [user.userId, pageSize, offset]);
 
-//         // Check if searchQuery is provided
-//         if (searchQuery) {
-//             query += ' AND report_name LIKE ?';
-//         }
+//         const totalPages: number = Math.ceil(totalCount / pageSize);
 
-//         query += ' ORDER BY created_at DESC';
-
-//         // Create parameters array for the query
-//         const queryParams = searchQuery ? [user.userId, `%${searchQuery}%`] : [user.userId];
-
-//         console.log(totalCountRows);
-
-//         // Update the original query with LIMIT and OFFSET
-//         query += ' LIMIT ? OFFSET ?';
-//         queryParams.push(pageSize, offset);
-
-//         // Execute the query to get the paginated results
-//         const rows = await pool.query(query, queryParams);
-
-//         const totalPages: number = Math.ceil(totalCountRows[0][0].total_count / pageSize);
 //         const paginationData = { page_size: pageSize, page, total_pages: totalPages };
-
 //         sendResponse(res, StatusCodes.OK, 'Success!', true, rows[0], paginationData);
 //     } catch (error: any) {
 //         sendError(res, StatusCodes.INTERNAL_SERVER_ERROR, error.message, false, error);
 //     }
 // };
+
+
+
+const getReportList: controller_interface['basicController'] = async (req, res) => {
+    try {
+        const { searchPage, searchQuery, sortQuery = 'DESC' } = req.body;
+        const user = await res.locals.user;
+
+        const page = parseInt(searchPage as string) || 1;
+        const pageSize = 5;
+        const offset = (page - 1) * pageSize;
+
+        // Get the total count value from the result
+        let total_query = `SELECT COUNT(*) as total_count FROM reports WHERE user_id = ? ${searchQuery ? 'AND report_name LIKE ?' : ''}`
+        let total_parmas = searchQuery ? [user.userId, `%${searchQuery}%`] : [user.userId]
+        const totalCountRows: any = await pool.query(total_query, total_parmas);
+        const totalRows = totalCountRows[0][0].total_count
+        const totalPages: number = Math.ceil(totalRows / pageSize);
+
+
+
+        // Check if searchQuery is provided
+        let query = 'SELECT * FROM reports WHERE user_id = ?';
+        if (searchQuery) {
+            query += ' AND report_name LIKE ?';
+        }
+
+        query += ` ORDER BY created_at ${sortQuery}`;
+
+        const queryParams = searchQuery ? [user.userId, `%${searchQuery}%`] : [user.userId];
+
+
+        // Update the original query with LIMIT and OFFSET
+        query += ' LIMIT ? OFFSET ?';
+        queryParams.push(pageSize, offset);
+
+        const rows = await pool.query(query, queryParams);
+
+        const paginationData = { page_size: pageSize, page, total_pages: totalPages, totalRows };
+
+        sendResponse(res, StatusCodes.OK, 'Success!', true, rows[0], paginationData);
+    } catch (error: any) {
+        sendError(res, StatusCodes.INTERNAL_SERVER_ERROR, error.message, false, error);
+    }
+};
 
 
 
