@@ -1,43 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { PropagateLoader } from 'react-spinners';
 import { RootState } from '../../app/store';
-
-const loadingContainerStyle: React.CSSProperties = {
-  display: 'flex',
-  position: 'absolute',
-  backgroundColor: 'white',
-  flexDirection: 'column',
-  gap: '50px',
-  alignItems: 'center',
-  justifyContent: 'center',
-  height: `calc(100vh - 120px)`,
-  width: '100%', // Set width to 100% of the viewport width
-  margin: 0, // Ensure no margin
-  padding: 0, // Ensure no padding
-};
-
-const loadingMessageStyle: React.CSSProperties = {
-  textAlign: 'center',
-  fontSize: '20px',
-
-  // Add any additional styling you want for the loading message
-};
+import { ProgressbarStyles } from '../../styles/Progressbar.styles';
 
 function ReportLoader() {
   const { isCreateLoading } = useSelector((state: RootState) => state.report);
+  const [progressValue, setProgressValue] = useState(0);
+
+  useEffect(() => {
+    if (isCreateLoading) {
+      const interval = setInterval(() => {
+        setProgressValue((prevValue) => {
+          const newValue = prevValue + 1;
+          return newValue <= 100 ? newValue : 100;
+        });
+      }, 600);
+
+      return () => clearInterval(interval);
+    }
+  }, [isCreateLoading]);
+
   return (
-    <>
+    <ProgressbarStyles>
       {isCreateLoading ? (
-        <div style={loadingContainerStyle}>
+        <div className="loadingContainerStyle">
           <div>
-            <div style={loadingMessageStyle}>Creating Report</div>
-            <div style={loadingMessageStyle}>Please wait</div>
+            <div className="loadingMessageStyle">Creating Report</div>
+            <div className="loadingMessageStyle">Please wait...</div>
           </div>
-          <PropagateLoader />
+          {/* <PropagateLoader /> */}
+
+          <div className="progressbarContainer">
+            <progress className="progressbar" value={progressValue} max={100}></progress>
+            <div className="percentageCounter">{progressValue}%</div>
+          </div>
         </div>
       ) : null}
-    </>
+    </ProgressbarStyles>
   );
 }
 
