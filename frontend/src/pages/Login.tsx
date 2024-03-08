@@ -57,7 +57,7 @@ const Login = () => {
 
   return (
     <>
-      <Nav />
+      {/* <Nav /> */}
       <StyledLogin>
         <section className="heading">
           <h1>Login</h1>

@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const StyledNav = styled.nav`
   display: flex;
-  position: fixed;
   justify-content: space-between;
   align-items: center;
   padding: 25px 25px 20px 20px;
@@ -17,11 +16,7 @@ export const StyledNav = styled.nav`
     list-style-type: none;
   }
 
-  .word-btn {
-    border: 5px solid;
-    padding: 8px;
-    width: 120px;
-  }
+
 
   .ul-btn {
     display: flex;
@@ -29,7 +24,7 @@ export const StyledNav = styled.nav`
     padding: 0;
   }
 
-  .ul-word-btn {
+  .word-btn {
     display: flex;
     gap: 25px;
     padding: 0;

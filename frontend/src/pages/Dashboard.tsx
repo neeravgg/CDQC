@@ -9,6 +9,7 @@ import { deleteReport, getAllReports } from '../redux/report/reportSlice';
 import ConfirmMessage from '../utils/confirmModel';
 import Table from '../components/Table';
 import Pagination from '../components/TablePagination';
+import { ButtonAnimatedStyles } from '../styles/ButtonAnimated.styled';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -83,9 +84,11 @@ const Dashboard = () => {
     <StyledDashboard>
       <div className="wrapper">
         {!isCreateLoading && !isLoading ? (
-          <button className="create create-btn" onClick={onCreate}>
-            Create
-          </button>
+          <ButtonAnimatedStyles>
+            <button className="create create-btn" onClick={onCreate}>
+              Create
+            </button>
+          </ButtonAnimatedStyles>
         ) : null}
         {reportList?.length > 0 && (
           <Table
