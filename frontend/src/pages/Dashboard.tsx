@@ -1,11 +1,11 @@
 import { SyntheticEvent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MdDeleteForever } from 'react-icons/md';
-import { FaCloudDownloadAlt, FaEye } from 'react-icons/fa';
+import { FaEye } from 'react-icons/fa';
 import { useSelector, useDispatch } from 'react-redux';
 import { StyledDashboard } from '../styles/Dashboard.styled';
 import { RootState } from '../app/store';
-import { deleteReport, getAllReports, getReportById } from '../redux/report/reportSlice';
+import { deleteReport, getAllReports } from '../redux/report/reportSlice';
 import Pagination from '../components/pagination';
 import ConfirmMessage from '../utils/confirmModel';
 
@@ -17,35 +17,27 @@ const Dashboard = () => {
     (state: RootState) => state.report
   );
 
-  const fetchImageLists = async (e) => {
+  const onCreate = () => {
+    navigate('/report/create');
+  };
+
+  const paginationChange = async (e: Record<string, any>) => {
+    getReports(e.selected + 1);
+  };
+  const getReports = (page: number = 1) => {
     dispatch(
       getAllReports({
-        searchPage: e.selected,
+        searchPage: page,
         searchQuery: '',
       })
     );
   };
 
-  const onCreate = () => {
-    navigate('/report/create');
-  };
-
-  // const onItemClick = (event, id) => {
-  //   event.stopPropagation();
-  //   if (id) navigate(`/report/details/${id}`);
-  // };
-
   const onItemDelete = (event, id) => {
     event.stopPropagation();
     dispatch(
       deleteReport({
-        cb: () =>
-          dispatch(
-            getAllReports({
-              searchPage: 0,
-              searchQuery: '',
-            })
-          ),
+        cb: () => getReports(),
         reportId: id,
       })
     );
@@ -65,12 +57,7 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    dispatch(
-      getAllReports({
-        searchPage: 0,
-        searchQuery: '',
-      })
-    );
+    getReports();
   }, []);
 
   return (
@@ -109,7 +96,7 @@ const Dashboard = () => {
           ))}
       </div>
       {reportList.length > 0 && (
-        <Pagination pageCount={reportPagination?.total_pages} handlePageClick={fetchImageLists} />
+        <Pagination pageCount={reportPagination?.total_pages} handlePageClick={paginationChange} />
       )}
 
       {reportList.length <= 0 && (
