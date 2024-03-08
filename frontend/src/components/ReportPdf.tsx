@@ -25,7 +25,7 @@ const ReportPdf = ({ name, imageUrl }) => {
       </div>
       <div ref={targetRef} className="flex flex-col gap-10 justify-center w-screen items-center">
         <div className="mt-5 text-3xl">{name}</div>
-        <img width={300} height={300} src={imageUrl} alt={name} />
+        <img width={400} height={400} src={imageUrl} alt={name} />
         <br />
       </div>
     </StyledDashboard>
