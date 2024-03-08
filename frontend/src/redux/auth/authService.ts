@@ -33,10 +33,9 @@ const logout = async (payload: Record<string, any>) => {
 const login = async (userData: Record<string, any>) => {
   const response: any = await axios.post(AUTH_URL + "login", userData);
   const data: Record<string, string> = response.data.result
-  console.log({ userData });
 
   if (response.data.status === 200) {
-    setCookie("token", data.token);
+    data.token && setCookie("token", data.token);
     setSessionStorage('user', { email: data.email, name: data.name })
     await userData.cb()
   }
