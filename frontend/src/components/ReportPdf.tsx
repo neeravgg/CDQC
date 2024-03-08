@@ -2,6 +2,7 @@ import { usePDF } from 'react-to-pdf';
 import { IoIosArrowBack } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
 import { StyledDashboard } from '../styles/Dashboard.styled';
+import { ButtonAnimatedStyles } from '../styles/ButtonAnimated.styled';
 
 const ReportPdf = ({ name, imageUrl }) => {
   const { toPDF, targetRef } = usePDF({ filename: `${name}.pdf` });
@@ -19,13 +20,15 @@ const ReportPdf = ({ name, imageUrl }) => {
           </div>
           <h1 className="font-semibold text-xl">Report</h1>
         </div>
-        <button className="create create-btn" onClick={onDownload}>
-          Download
-        </button>
+        <ButtonAnimatedStyles>
+          <button className="create create-btn" onClick={onDownload}>
+            Download
+          </button>
+        </ButtonAnimatedStyles>
       </div>
       <div ref={targetRef} className="flex flex-col gap-10 justify-center w-screen items-center">
         <div className="mt-5 text-3xl">{name}</div>
-        <img width={300} height={300} src={imageUrl} alt={name} />
+        <img width={400} height={400} src={imageUrl} alt={name} />
         <br />
       </div>
     </StyledDashboard>
