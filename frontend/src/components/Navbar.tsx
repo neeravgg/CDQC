@@ -21,7 +21,7 @@ const Navbar = () => {
   return (
     <div className="flex w-full justify-between">
       <div className="title"> Commodity Digital Quality Control </div>
-      <button className="word-btn bg-gray-700 p-3 text-white text-3xl" onClick={onLogOut}>
+      <button className="word-btn bg-zinc-700 p-3 text-white text-3xl" onClick={onLogOut}>
         <RiLogoutBoxFill />
       </button>
     </div>

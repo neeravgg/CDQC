@@ -1,11 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StyledDashboard = styled.div`
-  * {
-    background-color: ${({ theme }) => theme.colors.backgroundColor};
-    color: ${({ theme }) => theme.colors.primaryTextColor};
-  }
-
   .hidden {
     display: none;
   }
@@ -38,7 +33,7 @@ export const StyledDashboard = styled.div`
     height: 40px;
     padding: 4px 8px;
     border: 2px solid #000;
-    font-family: "Lato", sans-serif;
+    font-family: 'Lato', sans-serif;
     font-weight: 500;
     background: transparent;
     cursor: pointer;
@@ -56,12 +51,12 @@ export const StyledDashboard = styled.div`
   .create-btn:hover {
     background: transparent;
     color: #000;
-    box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9,
-      7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001;
+    box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9, 7px 7px 20px 0px #0002,
+      4px 4px 5px 0px #0001;
   }
   .create-btn:before,
   .create-btn:after {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     right: 0;
@@ -103,13 +98,6 @@ export const StyledDashboard = styled.div`
     gap: 8px;
   }
 
-  .action-icon {
-    font-size: 22px;
-    color: rgba(0, 0, 0, 0.7) !important;
-    cursor: pointer;
-    border: unset;
-  }
-
   .delete-icon {
     svg {
       color: red !important;
@@ -117,7 +105,11 @@ export const StyledDashboard = styled.div`
   }
 
   .camera {
-    position: "absolute";
+    position: 'absolute';
     bottom: 10%;
+  }
+
+  .no-results {
+    height: calc(100vh - 400px);
   }
 `;
