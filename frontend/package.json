@@ -6,6 +6,7 @@
   "dependencies": {
     "@pqina/pintura": "^8.74.0",
     "@pqina/react-pintura": "^9.0.3",
+    "@ramonak/react-progress-bar": "^5.2.0",
     "@reduxjs/toolkit": "^1.5.1",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
