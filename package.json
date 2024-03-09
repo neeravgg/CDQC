@@ -20,7 +20,6 @@
   },
   "homepage": "https://github.com/neeravgg/CDQC#readme",
   "dependencies": {
-    "@reduxjs/toolkit": "^2.2.1",
     "concurrently": "^8.2.2"
   }
 }

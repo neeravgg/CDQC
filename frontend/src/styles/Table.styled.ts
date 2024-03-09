@@ -6,6 +6,12 @@ export const StyledTable = styled.div`
     min-height: 400px;
   }
 
+  .table-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   .table-title {
     margin-top: 12px;
     text-align: unset;
@@ -123,5 +129,15 @@ export const StyledTable = styled.div`
     color: rgba(0, 0, 0, 0.7) !important;
     cursor: pointer;
     border: unset;
+    background: transparent;
+  }
+
+  .no-results {
+    height: calc(100vh - 400px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
   }
 `;

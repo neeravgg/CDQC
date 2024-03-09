@@ -18,7 +18,6 @@ import { useNavigate } from 'react-router-dom';
 const CameraComponent = ({ setIsWebcamOpen, setImageFile, setIsEditor }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [isBlurred, setIsBlurred] = useState(false);
   const [selfieMode, setSelfieMode] = useState(true);
   const webcamRef = useRef(null);
   const wrapperRef = useRef(null);
@@ -64,25 +63,8 @@ const CameraComponent = ({ setIsWebcamOpen, setImageFile, setIsEditor }) => {
     setScreenshot(null);
   };
 
-  const getUserMedia = async () => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      webcamRef.current.video.srcObject = stream;
-    } catch (error) {
-      hanldleMediaError(error);
-    }
-  };
-
-  const addBlurEffect = () => {
-    setIsBlurred(true);
-    setTimeout(() => {
-      setIsBlurred(false);
-    }, 200);
-  };
-
   // // sideeffects
   useEffect(() => {
-    addBlurEffect();
     // facemode
     if (selfieMode) {
       dispatch(updateCameraConstraints({ facingMode: 'user' }));

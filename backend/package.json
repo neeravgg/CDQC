@@ -6,9 +6,6 @@
   "engines": {
     "node": ">=14.20.1"
   },
-  "prisma": {
-    "schema": "src/prisma/schema.prisma"
-  },
   "scripts": {
     "start": "ts-node dist/server.js",
     "dev": "nodemon -x ts-node server.ts",
@@ -16,7 +13,6 @@
     "build": "yarn tsc"
   },
   "dependencies": {
-    "@prisma/client": "^4.15.0",
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.1.4",

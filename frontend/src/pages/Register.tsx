@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { RootState } from '../app/store';
 import { StyledRegister } from '../styles/Register.styled';
-import Nav from '../components/Nav';
 
 const Register = () => {
   const [formData, setFormData] = useState({

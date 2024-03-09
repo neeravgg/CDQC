@@ -22,7 +22,7 @@ const createReport: controller_interface['basicController'] = async (req, res) =
         setTimeout(async () => {
             const results = await pool.execute('INSERT INTO reports (report_name, image_url, user_id) VALUES (?, ?, ?)', [report_name, image_url, user.userId]);
             sendResponse(res, StatusCodes.OK, 'Success!', true, results[0]);
-        }, 50000); // 60 seconds
+        }, 60000); // 60 seconds
 
     } catch (error: any) {
         sendError(res, StatusCodes.INTERNAL_SERVER_ERROR, error.message, false, error);

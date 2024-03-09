@@ -3,6 +3,15 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { RootState } from '../../app/store';
 
+const StyledSpinnerWrapper = styled.div`
+  background: ${({ theme }) => theme.colors.backgroundColor};
+  width: 100vw;
+  height: calc(100vh - 60px);
+  position: absolute;
+  z-index: 999;
+  margin-top: 60px;
+`;
+
 const StyledSpinner = styled.div`
   width: 50px;
   height: 40px;
@@ -75,13 +84,15 @@ const Spinner = () => {
   return (
     <>
       {isLoading ? (
-        <StyledSpinner>
-          <div className="rect1"></div>
-          <div className="rect2"></div>
-          <div className="rect3"></div>
-          <div className="rect4"></div>
-          <div className="rect5"></div>
-        </StyledSpinner>
+        <StyledSpinnerWrapper>
+          <StyledSpinner>
+            <div className="rect1"></div>
+            <div className="rect2"></div>
+            <div className="rect3"></div>
+            <div className="rect4"></div>
+            <div className="rect5"></div>
+          </StyledSpinner>
+        </StyledSpinnerWrapper>
       ) : null}
     </>
   );

@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
-import { logout } from '../redux/auth/authSlice';
+import { logout, reset } from '../redux/auth/authSlice';
 
 import { RiLogoutBoxFill } from 'react-icons/ri';
 import ConfirmMessage from '../utils/confirmModel';
@@ -14,7 +14,14 @@ const Navbar = () => {
     // toast.success('Logout successful');
     const confirm = await ConfirmMessage('you want to logout?');
     if (confirm.isConfirmed) {
-      dispatch(logout({ cb: () => navigate('/') }));
+      dispatch(
+        logout({
+          cb: () => {
+            dispatch(reset());
+            navigate('/');
+          },
+        })
+      );
     }
   };
 

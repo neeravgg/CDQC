@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 export const ButtonAnimatedStyles = styled.div`
-.create {
-    margin-bottom: 1rem;
+  .create {
     text-align: center;
     width: 120px;
     height: 40px;
@@ -51,5 +50,4 @@ export const ButtonAnimatedStyles = styled.div`
     width: 100%;
     transition: 800ms ease all;
   }
-
-`
+`;

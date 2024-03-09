@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { RootState } from '../app/store';
 import { StyledLogin } from '../styles/Login.styled';
-import Nav from '../components/Nav';
 
 const Login = () => {
   const [formData, setFormData] = useState({
