@@ -17,9 +17,8 @@ const CreateReport = () => {
 
   const { newReport } = useSelector((state: RootState) => state.report);
 
-  const createNewReport = (file) => {
+  const createNewReport = async (file: File) => {
     setIsEditor(false);
-    // const compressedImage
     const payload = new FormData();
     const cb = () => {
       navigate(`/report/details/${newReport.insertId}`);
