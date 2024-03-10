@@ -19,6 +19,7 @@ const CreateReport = () => {
 
   const createNewReport = (file) => {
     setIsEditor(false);
+    // const compressedImage
     const payload = new FormData();
     const cb = () => {
       navigate(`/report/details/${newReport.insertId}`);

@@ -9,20 +9,22 @@ import { OkPacket } from 'mysql2';
 const createReport: controller_interface['basicController'] = async (req, res) => {
     const file = req.file
     const user = await res.locals.user
+    const uploadResult = await res.locals.uploadResult
+
 
     try {
         let image_url: string;
         let report_name: string;
         if (file) {
             report_name = file.originalname;
-            image_url = process.env.URL + `/uploads/${file.filename}`;
+            image_url = uploadResult.secure_url;
         }
 
         // Insert a delay of 60 seconds before sending the response
         setTimeout(async () => {
             const results = await pool.execute('INSERT INTO reports (report_name, image_url, user_id) VALUES (?, ?, ?)', [report_name, image_url, user.userId]);
             sendResponse(res, StatusCodes.OK, 'Success!', true, results[0]);
-        }, 60000); // 60 seconds
+        }, 6000); // 60 seconds
 
     } catch (error: any) {
         sendError(res, StatusCodes.INTERNAL_SERVER_ERROR, error.message, false, error);
