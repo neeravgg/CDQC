@@ -60,8 +60,4 @@ export const StyledDashboard = styled.div`
     position: 'absolute';
     bottom: 10%;
   }
-
-  .no-results {
-    height: calc(100vh - 400px);
-  }
 `;

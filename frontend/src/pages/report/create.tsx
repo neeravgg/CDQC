@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { lazy, useState } from 'react';
 import CameraComponent from '../../components/Camera';
-import ImageCropper from '../../components/ImageCropper';
 import { useSelector, useDispatch } from 'react-redux';
-import ImageEditor from '../../components/ImageEditor';
 import { RootState } from '../../app/store';
 import { createReport } from '../../redux/report/reportSlice';
 import { useNavigate } from 'react-router-dom';
+
+const ImageEditor = lazy(() => import('../../components/ImageEditor'));
 
 const CreateReport = () => {
   const [isWebCamOpen, setIsWebcamOpen] = useState(true);
@@ -19,6 +19,7 @@ const CreateReport = () => {
 
   const createNewReport = (file) => {
     setIsEditor(false);
+    // const compressedImage
     const payload = new FormData();
     const cb = () => {
       navigate(`/report/details/${newReport.insertId}`);

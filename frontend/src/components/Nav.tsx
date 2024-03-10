@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { StyledNav } from '../styles/Nav.styled';
 import Header from './Header';
 import { ButtonAnimatedStyles } from '../styles/ButtonAnimated.styled';

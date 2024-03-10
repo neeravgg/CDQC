@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { PropagateLoader } from 'react-spinners';
 import { RootState } from '../../app/store';
 import { ProgressbarStyles } from '../../styles/Progressbar.styles';
 

@@ -2,7 +2,7 @@ import express from "express";
 const router = express.Router();
 
 // middlewares
-import upload from '../middlewares/image.upload.middleware'
+import { processMulter, upload } from '../middlewares/image.upload.middleware'
 import { authenticateUser } from '../middlewares/authentication.middleware'
 
 // controllers
@@ -15,7 +15,8 @@ import {
 
 router.post('/create',
 	authenticateUser,
-	upload.single('image'),
+	processMulter.single('image'),
+	upload,
 	createReport);
 
 router.get(

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StyledRegister = styled.div`
   display: flex;
@@ -6,7 +6,7 @@ export const StyledRegister = styled.div`
   align-items: center;
   justify-content: center;
   gap: 20px;
-  height: 90vh;
+  height: 70vh;
   width: 100%;
   margin: 0;
 

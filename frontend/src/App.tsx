@@ -1,18 +1,13 @@
 import { BrowserRouter as Router, Routes, Route, Outlet, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Dashboard from './pages/Dashboard';
 import GlobalStyles from './styles/GlobalStyles';
 import { ThemeProvider } from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from './app/store';
 import { DefaultTheme } from 'styled-components';
 // import { getLocalStorage } from "./utils/StorageHelper";
-import { ReactNode, useEffect } from 'react';
-import CreateReport from './pages/report/create';
-import ReportDetails from './pages/report/details';
+import { ReactNode, Suspense, lazy, useEffect } from 'react';
 import { getCookie } from './utils/cookieHelper';
 import ReportLoader from './components/loaders/ReportLoader';
 import Spinner from './components/loaders/Spinner';
@@ -20,6 +15,13 @@ import Navbar from './components/Navbar';
 import ServerLoader from './components/loaders/ServerLoader';
 import { checkServer } from './redux/auth/authSlice';
 import Nav from './components/Nav';
+
+const Login = lazy(() => import('./pages/Login'));
+const Register = lazy(() => import('./pages/Register'));
+const Dashboard = lazy(() => import('./pages/Dashboard'));
+const CreateReport = lazy(() => import('./pages/report/create'));
+const ReportDetails = lazy(() => import('./pages/report/details'));
+
 let token = getCookie('token');
 
 function App() {
@@ -66,8 +68,8 @@ function App() {
   };
 
   return (
-    <>
-      <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
+      <Suspense fallback={<Spinner />}>
         <GlobalStyles />
         <ReportLoader />
         <Spinner />
@@ -135,8 +137,8 @@ function App() {
             backgroundColor: theme.colors.backgroundColor,
           }}
         />
-      </ThemeProvider>
-    </>
+      </Suspense>
+    </ThemeProvider>
   );
 }
 

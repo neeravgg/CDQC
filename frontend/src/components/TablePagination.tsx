@@ -5,9 +5,10 @@ import { StyledPagination } from '../styles/Pagination.styled';
 interface PaginationProps {
   pageCount: number;
   handlePageClick: ReactPaginateProps['onPageChange'];
+  selectedPage: number;
 }
 
-const Pagination: React.FC<PaginationProps> = ({ pageCount, handlePageClick }) => {
+const Pagination: React.FC<PaginationProps> = ({ pageCount, handlePageClick, selectedPage }) => {
   return (
     <StyledPagination>
       <div className="paginate">
@@ -21,6 +22,7 @@ const Pagination: React.FC<PaginationProps> = ({ pageCount, handlePageClick }) =
           nextLinkClassName={'pagination__link'}
           disabledClassName={'pagination__link--disabled'}
           activeClassName={'pagination__link--active'}
+          forcePage={selectedPage - 1}
         />
       </div>
     </StyledPagination>

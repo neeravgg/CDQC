@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { lazy, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getReportById } from '../../redux/report/reportSlice';
+import { getReportById, reset } from '../../redux/report/reportSlice';
 import { RootState } from '../../app/store';
-import ReportPdf from '../../components/ReportPdf';
+
+const ReportPdf = lazy(() => import('../../components/ReportPdf'));
 
 const ReportDetails = () => {
   const dispatch = useDispatch();
@@ -12,6 +13,9 @@ const ReportDetails = () => {
 
   useEffect(() => {
     if (id) dispatch(getReportById(id));
+    return () => {
+      dispatch(reset());
+    };
   }, [id, dispatch]);
 
   return (
