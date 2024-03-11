@@ -4,8 +4,6 @@
 
 The PWA processes a user-taken image to produce a report and user-friendly displays.
 
-NOTICE: Since the project is not yet in production and PDF only supports HTTPS communication and for the deployed version I will need a paid server, the image cannot currently be rendered on the PDF.
-
 <br>
 
 ## How to start
@@ -27,7 +25,7 @@ NOTICE: Since the project is not yet in production and PDF only supports HTTPS c
 - TypeScript
 - Reactjs
 - Redux Toolkit
-- Styled Components (CSS-in-JS)
+- Styled Components (CSS-in-TS)
 - tailwind
 
 **Backend:**
@@ -36,3 +34,4 @@ NOTICE: Since the project is not yet in production and PDF only supports HTTPS c
 - Nodejs
 - Express
 - Mysql
+- Cloudinary
