@@ -38,3 +38,4 @@ The PWA processes a user-taken image to produce a report and user-friendly displ
 - Nodejs
 - Express
 - Mysql
+- Cloudinary
