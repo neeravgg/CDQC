@@ -17,7 +17,7 @@ const register = async (userData: object) => {
 
 // Logout User Service
 const logout = async (payload: Record<string, any>) => {
-  console.log({ payload });
+
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,

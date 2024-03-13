@@ -2,6 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import authService from './authService';
 import { PayloadAction } from '@reduxjs/toolkit';
 import { getSessionStorage } from '../../utils/StorageHelper';
+import { toast } from 'react-toastify';
+
 
 // Get user from local storage (stringify converts null -> "null" if localStorage.getItem returns null, as JSON.parse can only take strings)
 const user = getSessionStorage('user') as Record<string, any>;
@@ -104,7 +106,7 @@ export const authSlice = createSlice({
       .addCase(register.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        window.location.href = `/`;
+        // window.location.href = `/`;
         state.user = action.payload;
       })
       .addCase(register.rejected, (state, action) => {

@@ -4,6 +4,12 @@
 
 The PWA processes a user-taken image to produce a report and user-friendly displays.
 
+<br/>
+
+## [Demo Video](https://youtu.be/yINGubNWVa4)
+
+### [![Alt text](https://img.youtube.com/vi/yINGubNWVa4/0.jpg)](https://youtu.be/yINGubNWVa4)
+
 <br>
 
 ## Prerequisites

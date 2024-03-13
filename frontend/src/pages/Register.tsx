@@ -29,7 +29,7 @@ const Register = () => {
       toast.error(message);
     }
 
-    if (isSuccess || user) {
+    if (isSuccess) {
       toast.success('Registration successful');
       navigate('/');
     }
