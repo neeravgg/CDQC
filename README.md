@@ -6,6 +6,10 @@ The PWA processes a user-taken image to produce a report and user-friendly displ
 
 <br>
 
+## Prerequisites
+
+### [Node version LTS should be installed](https://nodejs.org/en)
+
 ## How to start
 
 ### `npm install`
@@ -34,4 +38,3 @@ The PWA processes a user-taken image to produce a report and user-friendly displ
 - Nodejs
 - Express
 - Mysql
-- Cloudinary
