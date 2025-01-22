@@ -8,15 +8,15 @@ import cors from 'cors';
 
 const app = express();
 
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: 'http://localhost:3039',
+    origin: ['http://localhost:3039'],
     credentials: true,
   })
 );
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // routes
